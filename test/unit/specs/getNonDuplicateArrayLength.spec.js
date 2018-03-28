@@ -19,8 +19,8 @@ describe('exercise: ', () => {
         return 1
       }
 
-      var count = 0
-      for (var i = 1; i < array.length; i++) {
+      let count = 0
+      for (let i = 1; i < array.length; i++) {
         console.log('i: ', i)
         console.log('nums[i]: ', array[i])
         console.log('count: ', count)
