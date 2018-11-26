@@ -1,6 +1,6 @@
 
 describe('exercise: ', () => {
-  it('circle rotation', () => {
+  it('is triangle number', () => {
     /*
     An array A consisting of N integers is given. A triplet (P, Q, R) is triangular if 0 ≤ P < Q < R < N and:
 
