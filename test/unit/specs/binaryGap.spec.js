@@ -22,44 +22,33 @@ describe('exercise: ', () => {
     expected worst-case time complexity is O(log(N));
     expected worst-case space complexity is O(1).
     */
-    const getBiggestBinaryGapLength = (number) => {
-      let binary = ''
-      let counter = -1
-      let max = 0
-      let digit = 0
-      while (number > 0) {
-        digit = number % 2
-
-        console.log('----------')
-        console.log('digit: ', digit)
-        console.log('counter: ', counter)
-        console.log('max: ', max)
-        console.log('binary: ', binary)
-        console.log('number: ', number)
-        console.log('----------')
-
-        if (digit === 1) {
-          console.log('in if')
-          if (counter > max) {
-            console.log('in if 2')
-            max = counter
-          }
-          counter = 0
-        } else if (counter >= 0) {
-          console.log('in else if')
-          counter++
+    const getBiggestBinaryGapLength = number => {
+      let binaryDigitNumber = ''
+      const convertBinary = tenDigitNumber => {
+        if (tenDigitNumber > 0) {
+          const nextDigitNumber = parseInt(tenDigitNumber / 2)
+          tenDigitNumber = tenDigitNumber % 2
+          binaryDigitNumber += tenDigitNumber
+          return convertBinary(nextDigitNumber)
         }
 
-        binary = '' + digit + binary
-        number = parseInt(number / 2)
+        return binaryDigitNumber
       }
-      console.log('----final----')
-      console.log('digit: ', digit)
-      console.log('counter: ', counter)
-      console.log('max: ', max)
-      console.log('binary: ', binary)
-      console.log('number: ', number)
-      return max
+      binaryDigitNumber = convertBinary(number).split('').reverse().join('')
+
+      let biggestDistance = 0
+      let tmp = 0
+      for (var i = 0; i < binaryDigitNumber.length; i++) {
+        if (binaryDigitNumber.charAt(i) === '1') {
+          if (tmp > biggestDistance) {
+            biggestDistance = tmp
+          }
+          tmp = 0
+        }
+        tmp += 1
+      }
+      const maxGap = biggestDistance ? biggestDistance - 1 : 0
+      return maxGap
     }
     const number1 = 529
     expect(getBiggestBinaryGapLength(number1)).toEqual(4)
